@@ -325,34 +325,42 @@ public class BoardManager : MonoBehaviour
     /// <param name="col"></param>
     private void CheckWhichShipWasPlaced(int row, int col)
     {
-        float shipOffset = float.NaN;
+        float shipRowOffset = float.NaN;
+        float shipHeightOffset = 0f;
         switch (currentShipID)
         {   //Aircraft carrier offset
             case 0:
-                shipOffset = 1.8f;
+                shipRowOffset = 1.8f;
+                shipHeightOffset = -.10f+.5f;
                 break;
             //Battleship offset
             case 1:
-                shipOffset = 1.5f;
+                shipRowOffset = 1.5f;
+                shipHeightOffset = -.13f+.5f;
                 break;
             //Submarine offset
             case 2:
-                shipOffset = 1f;
+                shipRowOffset = 1f;
+                shipHeightOffset = 0.209f+.5f;
                 break;
             //Destroyer offset
             case 3:
-                shipOffset = 1f;
+                shipRowOffset = 1f;
+				shipHeightOffset = 0.24f+.5f;
+
                 break;
             //Patrol offset
             case 4:
-                shipOffset = .4f;
+                shipRowOffset = .4f;
+                shipHeightOffset = .08f+.5f;
+
                 break;
         }
         if (horizontal)
         {
             GameObject testingVisual = GameObject.Instantiate(boardPiecesPrefab[currentShipID],
-                                                              new Vector3(row + shipOffset,
-                                                                          boardPiecesPrefab[currentShipID].transform.position.y,
+                                                              new Vector3(row + shipRowOffset,
+                                                                          boardPiecesPrefab[currentShipID].transform.position.y + shipHeightOffset,
                                                                           col),
                                                               boardPiecesPrefab[currentShipID].transform.rotation) as GameObject;
             testingVisual.transform.RotateAround(testingVisual.transform.position, Vector3.up, 90.0f);
@@ -361,8 +369,8 @@ public class BoardManager : MonoBehaviour
         {
             GameObject testingVisual = GameObject.Instantiate(boardPiecesPrefab[currentShipID],
                                                               new Vector3(row,
-                                                                          boardPiecesPrefab[currentShipID].transform.position.y,
-                                                                          col + shipOffset),
+                                                                          boardPiecesPrefab[currentShipID].transform.position.y + shipHeightOffset,
+                                                                          col + shipRowOffset),
                                                               boardPiecesPrefab[currentShipID].transform.rotation) as GameObject;
         }
         count++;

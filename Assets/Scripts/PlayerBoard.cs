@@ -28,12 +28,9 @@ public class PlayerBoard : Board
                 temp.name = name;
                 gameBoard[i, j] = temp;
                 col++;
-
             }
             col = 1;
             row++;
         }
     }
-
-
 }
